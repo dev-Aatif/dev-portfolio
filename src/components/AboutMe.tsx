@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 // ============================================================
 // ABOUT ME — Clean two-column, single entrance animation
@@ -23,34 +24,38 @@ export default function AboutMe() {
           <div className="glass-bordered rounded-2xl p-8 md:p-12">
             <div className="grid md:grid-cols-[280px_1fr] gap-10 items-start">
               {/* Avatar */}
-              <div className="flex flex-col items-center md:items-start gap-4">
+              <div className="flex flex-col items-center gap-6">
                 <div
                   className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border border-glass-border"
                   style={{
                     background: "linear-gradient(135deg, rgba(139,92,246,0.2) 0%, rgba(56,189,248,0.15) 100%)",
                   }}
                 >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-secondary/30 text-xs font-mono text-center px-4">
-                      [Your Photo]<br />/public/avatar.jpg
-                    </span>
+                  <div className="relative w-full h-full">
+                    <Image 
+                      src="/profile.png" 
+                      alt="Aatif - Profile Picture" 
+                      fill
+                      className="object-cover"
+                      priority
+                    />
                   </div>
                 </div>
 
                 {/* Quick Stats */}
-                <div className="flex gap-4 text-center">
+                <div className="flex items-center justify-center gap-6 text-center w-full">
                   <div>
-                    <p className="text-2xl font-semibold text-interactive">[X]+</p>
+                    <p className="text-2xl font-semibold text-interactive">2+</p>
                     <p className="text-xs text-secondary">Years Exp</p>
                   </div>
                   <div className="w-px bg-glass-border" />
                   <div>
-                    <p className="text-2xl font-semibold text-interactive">[X]+</p>
+                    <p className="text-2xl font-semibold text-interactive">4+</p>
                     <p className="text-xs text-secondary">Projects</p>
                   </div>
                   <div className="w-px bg-glass-border" />
                   <div>
-                    <p className="text-2xl font-semibold text-interactive">[X]+</p>
+                    <p className="text-2xl font-semibold text-interactive">5+</p>
                     <p className="text-xs text-secondary">Clients</p>
                   </div>
                 </div>

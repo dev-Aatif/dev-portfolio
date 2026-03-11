@@ -4,7 +4,6 @@ import "./globals.css";
 
 // ============================================================
 // ROOT LAYOUT — Fonts, metadata, and global structure
-// Replace [PLACEHOLDERS] with your actual info
 // ============================================================
 
 const inter = Inter({
@@ -20,23 +19,22 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  // [Replace with your actual name and title]
-  title: "[Your Name] — Portfolio",
+  title: "dev-Aatif — Portfolio",
   description:
-    "[A compelling meta description: e.g., Software engineer and designer crafting beautiful, performant web experiences.]",
+    "Software engineer and designer crafting beautiful, performant web, mobile and desktop experiences.",
   keywords: [
-    "[your-name]",
+    "dev-Aatif",
     "portfolio",
     "software engineer",
     "web developer",
     "frontend",
     "designer",
   ],
-  authors: [{ name: "[Your Name]" }],
+  authors: [{ name: "dev-Aatif" }],
   openGraph: {
-    title: "[Your Name] — Portfolio",
+    title: "dev-Aatif — Portfolio",
     description:
-      "[A compelling meta description for social sharing.]",
+      "Software engineer and designer crafting beautiful, performant web, mobile and desktop experiences.",
     type: "website",
     locale: "en_US",
   },

@@ -45,7 +45,7 @@ export default function Navbar() {
           className="text-lg font-semibold tracking-tight text-primary hover:text-interactive transition-colors"
           aria-label="Go to homepage"
         >
-          [Your Name]
+          dev-Aatif
         </a>
 
         {/* Desktop Links */}

@@ -1,7 +1,3 @@
-// ============================================================
-// PROJECT DATA — Replace [PLACEHOLDERS] with your real content
-// ============================================================
-
 export interface Project {
   id: string;
   title: string;
@@ -46,38 +42,38 @@ export const projects: Project[] = [
     category: "uiux",
     liveUrl: "[https://your-live-url.com]",
   },
-  {
-    id: "project-4",
-    title: "[Project Title Four]",
-    description:
-      "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
-    image: "/projects/placeholder-4.svg",
-    tags: ["Node.js", "Express", "MongoDB", "Docker"],
-    category: "fullstack",
-    githubUrl: "[https://github.com/you/repo]",
-  },
-  {
-    id: "project-5",
-    title: "[Project Title Five]",
-    description:
-      "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
-    image: "/projects/placeholder-5.svg",
-    tags: ["React Native", "Expo", "Firebase"],
-    category: "mobile",
-    liveUrl: "[https://your-live-url.com]",
-    githubUrl: "[https://github.com/you/repo]",
-  },
-  {
-    id: "project-6",
-    title: "[Project Title Six]",
-    description:
-      "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
-    image: "/projects/placeholder-6.svg",
-    tags: ["Vue.js", "GSAP", "Three.js"],
-    category: "frontend",
-    liveUrl: "[https://your-live-url.com]",
-    githubUrl: "[https://github.com/you/repo]",
-  },
+  // {
+  //   id: "project-4",
+  //   title: "[Project Title Four]",
+  //   description:
+  //     "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
+  //   image: "/projects/placeholder-4.svg",
+  //   tags: ["Node.js", "Express", "MongoDB", "Docker"],
+  //   category: "fullstack",
+  //   githubUrl: "[https://github.com/you/repo]",
+  // },
+  // {
+  //   id: "project-5",
+  //   title: "[Project Title Five]",
+  //   description:
+  //     "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
+  //   image: "/projects/placeholder-5.svg",
+  //   tags: ["React Native", "Expo", "Firebase"],
+  //   category: "mobile",
+  //   liveUrl: "[https://your-live-url.com]",
+  //   githubUrl: "[https://github.com/you/repo]",
+  // },
+  // {
+  //   id: "project-6",
+  //   title: "[Project Title Six]",
+  //   description:
+  //     "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
+  //   image: "/projects/placeholder-6.svg",
+  //   tags: ["Vue.js", "GSAP", "Three.js"],
+  //   category: "frontend",
+  //   liveUrl: "[https://your-live-url.com]",
+  //   githubUrl: "[https://github.com/you/repo]",
+  // },
 ];
 
 export const categories = [

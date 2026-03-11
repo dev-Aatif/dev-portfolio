@@ -22,16 +22,17 @@ export default function Hero() {
         >
           {/* Tagline */}
           <p className="text-sm font-mono text-interactive mb-4 tracking-wider uppercase">
-            [Software Engineer & Designer]
+            Software Engineer
           </p>
 
           {/* Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95]">
-            <span className="gradient-text">I build things </span>
-            <br />
-            <span className="text-primary">for the web.</span>
-          </h1>
+            <span className="gradient-text">I build simple things </span>
+            <span className="text-primary text-[0.8em]">for every screen.</span>
+          </h1>         
 
+
+          
           {/* Sub-headline */}
           <motion.p
             initial={{ opacity: 0 }}
@@ -39,8 +40,9 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-6 text-lg md:text-xl text-secondary max-w-xl leading-relaxed"
           >
-            [A brief, compelling description of who you are and what you do.
-            Focus on the value you bring and the problems you solve.]
+           I fix problems by building simple, organized, and highly optimized solutions. 
+           While the tech world rushes, I take a step back to research and plan.
+           I build because I actually care about your experience. 
           </motion.p>
 
           {/* CTA Buttons */}
