@@ -12,13 +12,13 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "project-1",
-    title: "[Project Title One]",
+    title: "Ergo",
     description:
       "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
     image: "/projects/placeholder-1.svg",
     tags: ["React", "TypeScript", "Tailwind CSS"],
     category: "frontend",
-    liveUrl: "[https://your-live-url.com]",
+    // liveUrl: "[https://your-live-url.com]",
     githubUrl: "[https://github.com/you/repo]",
   },
   {

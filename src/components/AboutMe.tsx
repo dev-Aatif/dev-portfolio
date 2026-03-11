@@ -77,7 +77,7 @@ export default function AboutMe() {
                 </p>
                 <p className="text-secondary leading-relaxed">
                   Most of what I do is driven by the pure fulfillment of building something 
-                  right. I’m currently open to new opportunities—let’s build something 
+                  right. I’m currently open to new opportunities let’s build something 
                   great (and simple) together.
                 </p>
               
