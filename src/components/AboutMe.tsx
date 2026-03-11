@@ -64,22 +64,23 @@ export default function AboutMe() {
               {/* Philosophy & Experience */}
               <div className="space-y-5">
                 <p className="text-secondary leading-relaxed">
-                  [Hello! I am a passionate developer and designer who believes in
-                  building products that are not only functional but delightful to
-                  use. My journey started with your origin story and has evolved
-                  into a deep love for crafting clean, performant web experiences.]
+                  I’m a developer who finds complex problems and fixes them by building 
+                  meticulously organized, optimized, and incredibly simple solutions. 
+                  While the tech world rushes to ship, I prioritize deep research and 
+                  planning to ensure the final product feels effortless for the user.
                 </p>
                 <p className="text-secondary leading-relaxed">
-                  [I specialize in your specialties, with a strong focus on your
-                  focus area. Over the past X years, I have worked with teams at
-                  notable companies to ship products that serve real users at scale.]
+                  I specialize in building for the web, mobile, and desktop, with a obsession 
+                  for simplicity and performance. I spend most of my time optimizing what 
+                  others ignore, turning digital chaos into intuitive, chill experiences 
+                  that just work.
                 </p>
                 <p className="text-secondary leading-relaxed">
-                  [When I am not coding, you will find me doing hobbies. I am
-                  currently open to opportunities — let us build something great
-                  together.]
+                  Most of what I do is driven by the pure fulfillment of building something 
+                  right. I’m currently open to new opportunities—let’s build something 
+                  great (and simple) together.
                 </p>
-
+              
                 {/* Tech Stack */}
                 <div className="pt-4">
                   <p className="text-xs text-secondary/50 uppercase tracking-wider mb-3 font-mono">
