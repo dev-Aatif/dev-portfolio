@@ -4,47 +4,35 @@ import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
 // ============================================================
-// PROJECT CARD — Individual project display with hover effects
+// PROJECT CARD — Minimal animation, hover only
 // ============================================================
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
 }
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
+export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      className="group glass rounded-2xl overflow-hidden transition-all duration-300 hover:border-glass-border-hover hover:shadow-xl hover:shadow-interactive/5 break-inside-avoid mb-6"
+    <article
+      className="group glass-bordered rounded-2xl overflow-hidden transition-colors duration-200 hover:border-glass-border-hover break-inside-avoid mb-6"
     >
-      {/* --- Project Image --- */}
+      {/* Project Image */}
       <div className="relative aspect-video overflow-hidden bg-base-light">
-        {/* Placeholder gradient — replace with <Image> when you have screenshots */}
         <div
-          className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full"
           style={{
             background: `linear-gradient(135deg, 
-              hsl(${(index * 60) % 360}, 50%, 20%) 0%, 
-              hsl(${(index * 60 + 40) % 360}, 40%, 15%) 100%)`,
+              hsl(${(parseInt(project.id.replace(/\D/g, "")) * 60) % 360}, 40%, 18%) 0%, 
+              hsl(${(parseInt(project.id.replace(/\D/g, "")) * 60 + 40) % 360}, 35%, 12%) 100%)`,
           }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-secondary/40 text-sm font-mono">
-            {project.image}
-          </span>
+          <span className="text-secondary/30 text-xs font-mono">{project.image}</span>
         </div>
 
-        {/* --- Hover Overlay with Links --- */}
-        <div className="absolute inset-0 bg-base/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-base/70 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
@@ -61,7 +49,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg glass text-primary text-sm font-medium hover:bg-surface-hover transition-colors"
+              className="px-4 py-2 rounded-lg glass-bordered text-primary text-sm font-medium hover:bg-surface-hover transition-colors"
               aria-label={`View source code of ${project.title}`}
             >
               Source ↗
@@ -70,7 +58,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       </div>
 
-      {/* --- Card Content --- */}
+      {/* Content */}
       <div className="p-5">
         <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-interactive transition-colors duration-200">
           {project.title}
@@ -78,8 +66,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         <p className="text-sm text-secondary leading-relaxed mb-4">
           {project.description}
         </p>
-
-        {/* --- Tech Tags --- */}
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
@@ -91,6 +77,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           ))}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

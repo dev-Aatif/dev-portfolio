@@ -8,19 +8,22 @@ import ContactButton from "@/components/ContactButton";
 import Footer from "@/components/Footer";
 
 // ============================================================
-// MAIN PAGE — Composes all sections into the portfolio
+// MAIN PAGE — All sections + static bg mesh div
 // ============================================================
 
 export default function Home() {
   return (
     <>
-      {/* Background effect — cursor-tracking glow orb */}
+      {/* Static mesh gradient background — real div, not pseudo-element */}
+      <div className="bg-mesh" aria-hidden="true" />
+
+      {/* Cursor glow */}
       <GlowOrb />
 
-      {/* Sticky navigation */}
+      {/* Navigation */}
       <Navbar />
 
-      {/* Main content */}
+      {/* Sections */}
       <main className="relative z-10">
         <Hero />
         <ProjectsGrid />
@@ -28,7 +31,7 @@ export default function Home() {
         <RecruiterAccess />
       </main>
 
-      {/* Floating contact CTA */}
+      {/* Floating CTA */}
       <ContactButton />
 
       {/* Footer */}

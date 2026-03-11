@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // ============================================================
-// NAVBAR — Sticky glassmorphism navigation
-// Replace [Your Name] with your actual name/brand
+// NAVBAR — Clean sticky nav, glass only on scroll
 // ============================================================
 
 const navLinks = [
@@ -24,7 +23,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -32,101 +30,90 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background,border-color] duration-300 ${
         scrolled
-          ? "glass shadow-lg shadow-black/10"
-          : "bg-transparent"
+          ? "glass border-b border-glass-border"
+          : "bg-transparent border-b border-transparent"
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between h-16">
-        {/* --- Logo / Name --- */}
+        {/* Logo */}
         <a
           href="#"
           className="text-lg font-semibold tracking-tight text-primary hover:text-interactive transition-colors"
           aria-label="Go to homepage"
         >
-          {/* [Your Name] — Replace with your name or logo */}
           [Your Name]
         </a>
 
-        {/* --- Desktop Links --- */}
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-secondary hover:text-primary transition-colors duration-200 relative group"
+              className="text-sm text-secondary hover:text-primary transition-colors relative group"
               aria-label={`Navigate to ${link.label}`}
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-interactive transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-interactive transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
           <a
             href="#contact"
-            className="ml-2 px-4 py-2 text-sm font-medium rounded-lg bg-interactive text-white hover:bg-interactive-hover transition-all duration-200 hover:shadow-lg hover:shadow-interactive/25"
+            className="ml-2 px-4 py-2 text-sm font-medium rounded-lg bg-interactive text-white hover:bg-interactive-hover transition-colors"
             aria-label="Get in touch"
           >
             Get in Touch
           </a>
         </div>
 
-        {/* --- Mobile Burger --- */}
+        {/* Mobile Burger — simple CSS toggle, no Framer Motion on burger lines */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface transition-colors"
+          className="md:hidden flex flex-col justify-center gap-1.5 p-2 w-10 h-10 rounded-lg hover:bg-surface transition-colors"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
-          <motion.span
-            animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            className="block w-6 h-0.5 bg-primary origin-center"
-          />
-          <motion.span
-            animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block w-6 h-0.5 bg-primary"
-          />
-          <motion.span
-            animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            className="block w-6 h-0.5 bg-primary origin-center"
-          />
+          <span className={`block h-px bg-primary transition-all duration-200 origin-center ${mobileOpen ? "rotate-45 translate-y-[4px] w-5" : "w-6"}`} />
+          <span className={`block h-px bg-primary transition-all duration-200 ${mobileOpen ? "opacity-0 w-0" : "w-4 opacity-100"}`} />
+          <span className={`block h-px bg-primary transition-all duration-200 origin-center ${mobileOpen ? "-rotate-45 -translate-y-[4px] w-5" : "w-6"}`} />
         </button>
       </div>
 
-      {/* --- Mobile Menu Overlay --- */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-16 left-0 right-0 glass-strong p-6 flex flex-col gap-4"
+            className="md:hidden overflow-hidden glass border-t border-glass-border"
           >
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
+            <div className="p-6 flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-lg text-secondary hover:text-primary transition-colors py-2"
+                  aria-label={`Navigate to ${link.label}`}
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
                 onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className="text-lg text-secondary hover:text-primary transition-colors py-2 border-b border-glass-border"
-                aria-label={`Navigate to ${link.label}`}
+                className="mt-2 text-center px-4 py-3 text-sm font-medium rounded-lg bg-interactive text-white hover:bg-interactive-hover transition-colors"
+                aria-label="Get in touch"
               >
-                {link.label}
-              </motion.a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 text-center px-4 py-3 text-sm font-medium rounded-lg bg-interactive text-white hover:bg-interactive-hover transition-all"
-              aria-label="Get in touch"
-            >
-              Get in Touch
-            </a>
+                Get in Touch
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

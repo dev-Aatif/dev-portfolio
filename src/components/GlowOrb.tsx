@@ -3,8 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // ============================================================
-// GLOW ORB — Cursor-tracking gradient orb for hero background
-// Adds subtle depth and uniqueness without distraction
+// GLOW ORB — GPU-accelerated cursor follower
 // ============================================================
 
 export default function GlowOrb() {
@@ -18,37 +17,43 @@ export default function GlowOrb() {
     let mouseY = window.innerHeight / 2;
     let orbX = mouseX;
     let orbY = mouseY;
-    let animationId: number;
+    let animId: number;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
     };
 
-    // Smooth follow with lerp
-    const animate = () => {
-      orbX += (mouseX - orbX) * 0.05;
-      orbY += (mouseY - orbY) * 0.05;
-      orb.style.transform = `translate(${orbX - 300}px, ${orbY - 300}px)`;
-      animationId = requestAnimationFrame(animate);
+    const tick = () => {
+      orbX += (mouseX - orbX) * 0.04;
+      orbY += (mouseY - orbY) * 0.04;
+      // Use translate3d to force GPU layer
+      orb.style.transform = `translate3d(${orbX - 300}px, ${orbY - 300}px, 0)`;
+      animId = requestAnimationFrame(tick);
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    animationId = requestAnimationFrame(animate);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    animId = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationId);
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(animId);
     };
   }, []);
 
   return (
     <div
       ref={orbRef}
-      className="pointer-events-none fixed top-0 left-0 z-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px]"
+      className="pointer-events-none fixed top-0 left-0 z-0"
       style={{
+        width: 600,
+        height: 600,
+        borderRadius: "50%",
+        opacity: 0.15,
+        filter: "blur(120px)",
         background:
-          "radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, rgba(56, 189, 248, 0.3) 40%, transparent 70%)",
+          "radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(56,189,248,0.2) 40%, transparent 70%)",
+        willChange: "transform",
       }}
       aria-hidden="true"
     />
