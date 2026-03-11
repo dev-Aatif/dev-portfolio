@@ -1,10 +1,9 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
+import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // ============================================================
-// PROJECT CARD — Minimal animation, hover only
+// PROJECT CARD — Clean Scalable Icon Version
 // ============================================================
 
 interface ProjectCardProps {
@@ -12,27 +11,37 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  // Dynamically get the icon component from Lucide
+  const IconComponent = (LucideIcons[project.icon as keyof typeof LucideIcons] as LucideIcon) || LucideIcons.Code2;
+
+  // Safe ID parsing for generated background color
+  const idNumber = parseInt(project.id.replace(/\D/g, "")) || 0;
+  const hue = (idNumber * 60) % 360;
+
   return (
     <article
       className="group glass-bordered rounded-2xl overflow-hidden transition-colors duration-200 hover:border-glass-border-hover break-inside-avoid mb-6"
     >
-      {/* Project Image */}
-      <div className="relative aspect-video overflow-hidden bg-base-light">
+      {/* Project Icon Hero Section */}
+      <div className="relative aspect-video overflow-hidden bg-base-light flex items-center justify-center">
+        {/* Dynamic Glowing Background */}
         <div
-          className="w-full h-full"
+          className="absolute inset-0 opacity-10 transition-opacity duration-300 group-hover:opacity-20"
           style={{
-            background: `linear-gradient(135deg, 
-              hsl(${(parseInt(project.id.replace(/\D/g, "")) * 60) % 360}, 40%, 18%) 0%, 
-              hsl(${(parseInt(project.id.replace(/\D/g, "")) * 60 + 40) % 360}, 35%, 12%) 100%)`,
+            background: `radial-gradient(circle at center, 
+              hsl(${hue}, 70%, 50%), 
+              transparent 70%)`,
           }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-secondary/30 text-xs font-mono">{project.image}</span>
+        
+        {/* The Icon */}
+        <div className="relative z-10 text-secondary/40 transition-all duration-300 group-hover:text-interactive group-hover:scale-110">
+          <IconComponent size={64} strokeWidth={1.2} />
         </div>
 
         {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-base/70 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3">
+        <div className="absolute inset-0 bg-base/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 z-20">
           {project.liveUrl && (
             <a
               href={project.liveUrl}

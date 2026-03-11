@@ -28,7 +28,9 @@ export default function Home() {
         <Hero />
         <ProjectsGrid />
         <AboutMe />
-        <RecruiterAccess />
+        <div id="contact">
+          <RecruiterAccess />
+        </div>
       </main>
 
       {/* Floating CTA */}

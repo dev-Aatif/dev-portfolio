@@ -70,14 +70,14 @@ export default function AboutMe() {
                   planning to ensure the final product feels effortless for the user.
                 </p>
                 <p className="text-secondary leading-relaxed">
-                  I specialize in building for the web, mobile, and desktop, with a obsession 
+                  I specialize in building for the web, mobile, and desktop, with an obsession 
                   for simplicity and performance. I spend most of my time optimizing what 
                   others ignore, turning digital chaos into intuitive, chill experiences 
                   that just work.
                 </p>
                 <p className="text-secondary leading-relaxed">
                   Most of what I do is driven by the pure fulfillment of building something 
-                  right. I’m currently open to new opportunities let’s build something 
+                  right. I&apos;m currently open to new opportunities — let&apos;s build something 
                   great (and simple) together.
                 </p>
               
@@ -87,7 +87,7 @@ export default function AboutMe() {
                     Tech I work with
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "Tailwind CSS", "PostgreSQL", "Docker", "AWS", "Figma", "Git"].map((tech) => (
+                    {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "Tailwind CSS", "PostgreSQL", "Git", "GitHub", "Kotlin"].map((tech) => (
                       <span
                         key={tech}
                         className="px-3 py-1.5 text-xs font-mono rounded-lg bg-base-light/50 text-secondary border border-glass-border hover:border-interactive/30 hover:text-primary transition-colors duration-150"

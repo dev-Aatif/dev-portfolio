@@ -10,13 +10,12 @@ export default function ContactButton() {
   return (
     <motion.div
       className="fixed bottom-8 right-8 z-50"
-      id="contact"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 180, damping: 15 }}
     >
       <a
-        href="mailto:[your.email@example.com]"
+        href="mailto:Aatif.biz@protonmail.com"
         className="flex items-center gap-2 px-5 py-3 rounded-full bg-interactive text-white font-medium text-sm shadow-lg shadow-interactive/20 hover:bg-interactive-hover transition-colors"
         aria-label="Send me an email"
       >
