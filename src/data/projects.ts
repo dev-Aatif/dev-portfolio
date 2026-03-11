@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   image: string; // Path to project screenshot in /public/projects/
   tags: string[];
-  category: "frontend" | "fullstack" | "uiux" | "mobile";
+  category: "fullstack" | "mobile" | "web" | "desktop" | "automation" | "cross-platform";
   liveUrl?: string;
   githubUrl?: string;
 }
@@ -14,33 +14,31 @@ export const projects: Project[] = [
     id: "project-1",
     title: "Ergo",
     description:
-      "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
-    image: "/projects/placeholder-1.svg",
-    tags: ["React", "TypeScript", "Tailwind CSS"],
-    category: "frontend",
-    // liveUrl: "[https://your-live-url.com]",
-    githubUrl: "[https://github.com/you/repo]",
+      "A high-performance, offline-first learning platform featuring a custom quiz engine and streak-tracking analytics.",
+    image: "/projects/ergo-preview.svg",
+    tags: ["Flutter", "Riverpod", "SQLite", "GoRouter"],
+    category: "mobile",
+    githubUrl: "https://github.com/dev-Aatif/ergo",
   },
   {
     id: "project-2",
-    title: "[Project Title Two]",
+    title: "Sarmaya",
     description:
-      "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
-    image: "/projects/placeholder-2.svg",
-    tags: ["Next.js", "PostgreSQL", "Prisma"],
-    category: "fullstack",
-    liveUrl: "[https://your-live-url.com]",
-    githubUrl: "[https://github.com/you/repo]",
+      "An event-sourced portfolio tracker built with Jetpack Compose, featuring precise realized P/L tracking and adversarial data resilience.",
+    image: "/projects/sarmaya-preview.svg",
+    tags: ["Kotlin", "Jetpack Compose", "Room", "MVVM"],
+    category: "mobile",
+    githubUrl: "https://github.com/dev-Aatif/sarmaya",
   },
   {
     id: "project-3",
-    title: "[Project Title Three]",
+    title: "Nebula Downloader",
     description:
-      "[A concise one-liner describing this project, its purpose, and what makes it unique.]",
-    image: "/projects/placeholder-3.svg",
-    tags: ["Figma", "Prototyping", "User Research"],
-    category: "uiux",
-    liveUrl: "[https://your-live-url.com]",
+      "A sleek media extraction tool with a glassmorphic UI, supporting 8K downloads and intelligent clipboard detection.",
+    image: "/projects/nebula-preview.svg",
+    tags: ["Python", "yt-dlp", "SQLite", "CustomTkinter"],
+    category: "desktop",
+    githubUrl: "https://github.com/dev-Aatif/nebula-downloader",
   },
   // {
   //   id: "project-4",
@@ -78,8 +76,10 @@ export const projects: Project[] = [
 
 export const categories = [
   { id: "all", label: "All" },
-  { id: "frontend", label: "Frontend" },
-  { id: "fullstack", label: "Fullstack" },
-  { id: "uiux", label: "UI/UX" },
+  { id: "web", label: "Web" },
   { id: "mobile", label: "Mobile" },
+  { id: "desktop", label: "Desktop" },
+  { id: "fullstack", label: "Fullstack" },
+  { id: "automation", label: "Automation" },
+  { id: "cross-platform", label: "Cross-Platform" },
 ] as const;
