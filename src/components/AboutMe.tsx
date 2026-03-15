@@ -50,12 +50,12 @@ export default function AboutMe() {
                   </div>
                   <div className="w-px bg-glass-border" />
                   <div>
-                    <p className="text-2xl font-semibold text-interactive">4+</p>
+                    <p className="text-2xl font-semibold text-interactive">5+</p>
                     <p className="text-xs text-secondary">Projects</p>
                   </div>
                   <div className="w-px bg-glass-border" />
                   <div>
-                    <p className="text-2xl font-semibold text-interactive">5+</p>
+                    <p className="text-2xl font-semibold text-interactive">15+</p>
                     <p className="text-xs text-secondary">Clients</p>
                   </div>
                 </div>
