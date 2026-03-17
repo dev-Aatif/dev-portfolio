@@ -47,7 +47,7 @@ const links = [
 
 export default function RecruiterAccess() {
   return (
-    <section id="resume" className="relative z-10 py-24 px-6" aria-label="Quick access links for recruiters">
+    <section id="resume" className="relative z-10 pt-6 pb-24 px-6" aria-label="Quick access links for recruiters">
       <div className="mx-auto max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

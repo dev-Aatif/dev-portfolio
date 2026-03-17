@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative z-10 pt-44 pb-20 flex items-center justify-center px-6"
+      className="relative z-10 pt-40 pb-12 flex items-center justify-center px-6"
       aria-label="Introduction"
     >
       <div className="max-w-[1200px] w-full">
@@ -68,13 +68,6 @@ export default function Hero() {
             </a>
           </motion.div>
         </motion.div>
-
-        {/* Scroll Indicator — pure CSS, no Framer repeat animation */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-40">
-          <div className="w-5 h-8 rounded-full border border-secondary/30 flex items-start justify-center p-1.5">
-            <div className="w-1 h-1.5 rounded-full bg-secondary/60 animate-bounce" />
-          </div>
-        </div>
       </div>
     </section>
   );

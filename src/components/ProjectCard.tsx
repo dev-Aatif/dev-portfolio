@@ -29,6 +29,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={project.title}
             fill
+            unoptimized
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
         ) : (
@@ -86,10 +87,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
 
-        <p className="text-secondary leading-relaxed mb-6 italic">
-          &quot;{project.description}&quot;
-        </p>
-
         {/* Compact Detailed Sections */}
         <div className="space-y-4 pt-4 border-t border-glass-border/30">
           {[
@@ -110,11 +107,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Tags */}
-        <div className="mt-6 flex flex-wrap gap-1.5">
+        <div className="mt-6 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-[10px] font-mono rounded-lg bg-base-light/50 text-primary/80 border border-glass-border/40"
+              className="px-4 py-1.5 text-[11px] font-bold rounded-xl bg-interactive/10 text-interactive border border-interactive/20 shadow-sm"
             >
               {tag}
             </span>

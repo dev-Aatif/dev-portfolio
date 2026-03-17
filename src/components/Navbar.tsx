@@ -91,28 +91,32 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden bg-base/98 backdrop-blur-xl border-t border-glass-border"
+            className="md:hidden overflow-hidden bg-base/98 backdrop-blur-xl border-t border-glass-border relative z-[60]"
           >
             <div className="p-6 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-lg text-secondary hover:text-primary transition-colors py-2 border-b border-glass-border/10 last:border-0"
+                  onClick={() => {
+                    window.location.hash = link.href;
+                    setMobileOpen(false);
+                  }}
+                  className="text-left text-lg text-secondary hover:text-primary transition-colors py-3 border-b border-glass-border/10 last:border-0"
                   aria-label={`Navigate to ${link.label}`}
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
-              <a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
+              <button
+                onClick={() => {
+                  window.location.hash = "#contact";
+                  setMobileOpen(false);
+                }}
                 className="mt-2 text-center px-4 py-4 text-sm font-bold rounded-xl bg-interactive text-white hover:bg-interactive-hover transition-all active:scale-95 shadow-lg shadow-interactive/20"
                 aria-label="Get in touch"
               >
                 Get in Touch
-              </a>
+              </button>
             </div>
           </motion.div>
         )}
