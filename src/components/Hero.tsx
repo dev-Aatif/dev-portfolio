@@ -38,7 +38,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-6 text-lg md:text-xl text-secondary max-w-xl leading-relaxed"
+            className="mt-6 text-lg md:text-xl text-primary/80 max-w-xl leading-relaxed"
           >
            I fix problems by building simple, organized, and highly optimized solutions. 
            While the tech world rushes, I take a step back to research and plan.

@@ -37,9 +37,9 @@ export default function Footer() {
     <footer className="relative z-10 border-t border-glass-border py-8 px-6">
       <div className="mx-auto max-w-[1200px] flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* --- Copyright --- */}
-        <p className="text-sm text-secondary">
+        <p className="text-sm text-primary/80">
           © {new Date().getFullYear()}{" "}
-          <span className="text-primary font-medium">dev-Aatif</span>.
+          <span className="text-primary font-bold">dev-Aatif</span>.
           All rights reserved.
         </p>
 

@@ -1,9 +1,10 @@
 import type { Project } from "@/data/projects";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Image from "next/image";
 
 // ============================================================
-// PROJECT CARD — Clean Scalable Icon Version
+// PROJECT CARD — Detailed Section Version
 // ============================================================
 
 interface ProjectCardProps {
@@ -14,74 +15,105 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   // Dynamically get the icon component from Lucide
   const IconComponent = (LucideIcons[project.icon as keyof typeof LucideIcons] as LucideIcon) || LucideIcons.Code2;
 
-  // Safe ID parsing for generated background color
-  const idNumber = parseInt(project.id.replace(/\D/g, "")) || 0;
-  const hue = (idNumber * 60) % 360;
-
   return (
-    <article
-      className="group glass-bordered rounded-2xl overflow-hidden transition-colors duration-200 hover:border-glass-border-hover break-inside-avoid mb-6"
-    >
-      {/* Project Icon Hero Section */}
-      <div className="relative aspect-video overflow-hidden bg-base-light flex items-center justify-center">
-        {/* Dynamic Glowing Background */}
-        <div
-          className="absolute inset-0 opacity-10 transition-opacity duration-300 group-hover:opacity-20"
-          style={{
-            background: `radial-gradient(circle at center, 
-              hsl(${hue}, 70%, 50%), 
-              transparent 70%)`,
-          }}
-          aria-hidden="true"
-        />
+    <article className="group glass-bordered rounded-3xl overflow-hidden transition-all duration-300 hover:border-glass-border-hover mb-8 flex flex-col bg-surface/5">
+      {/* Project Hero Image - Interactive Trigger */}
+      <a 
+        href={project.id === "landing-page" ? project.liveUrl : project.image} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="relative aspect-video w-full overflow-hidden bg-base-light cursor-zoom-in"
+      >
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-secondary/40">
+            <IconComponent size={64} strokeWidth={1} />
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60" />
         
-        {/* The Icon */}
-        <div className="relative z-10 text-secondary/40 transition-all duration-300 group-hover:text-interactive group-hover:scale-110">
-          <IconComponent size={64} strokeWidth={1.2} />
+        {/* Play / Zoom Icon Indicator */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-base/20">
+          <div className="p-4 rounded-full bg-interactive/90 text-white shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
+            {project.id === "landing-page" ? <LucideIcons.ExternalLink size={32} /> : <LucideIcons.Maximize2 size={32} />}
+          </div>
         </div>
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-base/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 z-20">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg bg-interactive text-white text-sm font-medium hover:bg-interactive-hover transition-colors"
-              aria-label={`View live demo of ${project.title}`}
-            >
-              Live Demo ↗
-            </a>
-          )}
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg glass-bordered text-primary text-sm font-medium hover:bg-surface-hover transition-colors"
-              aria-label={`View source code of ${project.title}`}
-            >
-              Source ↗
-            </a>
-          )}
+        {/* Category Badge */}
+        <div className="absolute bottom-4 left-6 px-3 py-1 rounded-full bg-base/80 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-secondary border border-glass-border z-10">
+          {project.category}
         </div>
-      </div>
+      </a>
 
-      {/* Content */}
-      <div className="p-5">
-        <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-interactive transition-colors duration-200">
-          {project.title}
-        </h3>
-        <p className="text-sm text-secondary leading-relaxed mb-4">
-          {project.description}
+      {/* Content Container */}
+      <div className="p-6">
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <h3 className="text-xl font-bold text-primary tracking-tight leading-tight">
+            {project.title}
+          </h3>
+          <div className="flex gap-1.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full glass-bordered text-secondary hover:text-interactive hover:bg-surface-hover transition-all"
+                aria-label="View Github"
+              >
+                <LucideIcons.Github size={20} />
+              </a>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-interactive text-white hover:bg-interactive-hover transition-all"
+                aria-label="View Live"
+              >
+                <LucideIcons.ExternalLink size={20} />
+              </a>
+            )}
+          </div>
+        </div>
+
+        <p className="text-secondary leading-relaxed mb-6 italic">
+          &quot;{project.description}&quot;
         </p>
-        <div className="flex flex-wrap gap-2">
+
+        {/* Compact Detailed Sections */}
+        <div className="space-y-4 pt-4 border-t border-glass-border/30">
+          {[
+            { label: "Problem", text: project.problem, icon: LucideIcons.AlertCircle },
+            { label: "Solution", text: project.solution, icon: LucideIcons.Settings },
+            { label: "Result", text: project.result, icon: LucideIcons.CheckCircle },
+          ].map((item) => (
+            <div key={item.label}>
+              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-interactive mb-1">
+                <item.icon size={12} />
+                <span>{item.label}</span>
+              </div>
+              <p className="text-[13px] text-primary/90 leading-snug line-clamp-2">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Tags */}
+        <div className="mt-6 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 text-xs font-mono rounded-md bg-base-light/50 text-secondary border border-glass-border"
+              className="px-3 py-1 text-[10px] font-mono rounded-lg bg-base-light/50 text-primary/80 border border-glass-border/40"
             >
-              {tag}
+              #{tag}
             </span>
           ))}
         </div>

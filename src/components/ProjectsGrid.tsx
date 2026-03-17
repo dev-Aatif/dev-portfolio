@@ -55,8 +55,8 @@ export default function ProjectsGrid() {
           ))}
         </div>
 
-        {/* Grid — no Framer on individual cards */}
-        <div className="columns-1 md:columns-2 gap-6">
+        {/* Grid — Responsive 2-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
