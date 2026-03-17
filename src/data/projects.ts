@@ -66,7 +66,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     category: "web",
     githubUrl: "https://github.com/dev-Aatif/landing-page",
-    liveUrl: "/projects/landing_page",
+    liveUrl: "/projects/landing_page/assets/hero.png",
   },
 ];
 
