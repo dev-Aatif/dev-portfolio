@@ -19,7 +19,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <article className="group glass-bordered rounded-3xl overflow-hidden transition-all duration-300 hover:border-glass-border-hover mb-8 flex flex-col bg-surface/5">
       {/* Project Hero Image - Interactive Trigger */}
       <a 
-        href={project.id === "landing-page" ? project.liveUrl : project.image} 
+        href={project.liveUrl} 
         target="_blank" 
         rel="noopener noreferrer"
         className="relative aspect-video w-full overflow-hidden bg-base-light cursor-zoom-in"
@@ -39,7 +39,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60" />
         
         {/* Play / Zoom Icon Indicator */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-base/20">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-base/20">
           <div className="p-4 rounded-full bg-interactive/90 text-white shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
             {project.id === "landing-page" ? <LucideIcons.ExternalLink size={32} /> : <LucideIcons.Maximize2 size={32} />}
           </div>
@@ -57,14 +57,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-xl font-bold text-primary tracking-tight leading-tight">
             {project.title}
           </h3>
-          <div className="flex gap-1.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* External Links - Hover revealed with better interaction state */}
+          <div className="flex gap-2 shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full glass-bordered text-secondary hover:text-interactive hover:bg-surface-hover transition-all"
+                className="p-2 rounded-xl glass-bordered transition-all bg-surface/50 hover:bg-surface-hover hover:text-interactive hover:scale-110 active:scale-95"
                 aria-label="View Github"
+                onClick={(e) => e.stopPropagation()}
               >
                 <LucideIcons.Github size={20} />
               </a>
@@ -74,10 +76,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-interactive text-white hover:bg-interactive-hover transition-all"
-                aria-label="View Live"
+                className="p-2 rounded-xl bg-interactive text-white shadow-lg transition-all hover:bg-interactive-hover hover:scale-110 active:scale-95"
+                aria-label="View Live/Demo"
+                onClick={(e) => e.stopPropagation()}
               >
-                <LucideIcons.ExternalLink size={20} />
+                {project.id === "landing-page" ? <LucideIcons.ExternalLink size={20} /> : <LucideIcons.Play size={20} />}
               </a>
             )}
           </div>

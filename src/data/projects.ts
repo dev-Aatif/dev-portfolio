@@ -30,6 +30,7 @@ export const projects: Project[] = [
     tags: ["Python", "Web Scraping", "Discord API", "Docker"],
     category: "automation",
     githubUrl: "https://github.com/dev-Aatif/job-finder",
+    liveUrl: "/projects/automation/assets/hero.png",
   },
   {
     id: "lead-scraper",
@@ -47,6 +48,7 @@ export const projects: Project[] = [
     tags: ["Python", "Playwright", "Heuristics", "Data Engineering"],
     category: "automation",
     githubUrl: "https://github.com/dev-Aatif/lead-scraper",
+    liveUrl: "/projects/lead_scraper/assets/hero.png",
   },
   {
     id: "landing-page",
@@ -64,6 +66,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     category: "web",
     githubUrl: "https://github.com/dev-Aatif/landing-page",
+    liveUrl: "https://dev-aatif/portfolio/projects/landing_page.vercel.app/",
   },
 ];
 
