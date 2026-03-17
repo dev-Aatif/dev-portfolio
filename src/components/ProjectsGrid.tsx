@@ -18,7 +18,7 @@ export default function ProjectsGrid() {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="relative z-10 py-24 px-6" aria-label="Projects">
+    <section id="projects" className="relative z-10 pt-12 pb-24 px-6" aria-label="Projects">
       <div className="mx-auto max-w-[1200px]">
         {/* Section Header — one single fade-in */}
         <motion.div

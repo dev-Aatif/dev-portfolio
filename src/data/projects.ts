@@ -73,9 +73,5 @@ export const projects: Project[] = [
 export const categories = [
   { id: "all", label: "All" },
   { id: "web", label: "Web" },
-  { id: "mobile", label: "Mobile" },
-  { id: "desktop", label: "Desktop" },
-  { id: "fullstack", label: "Fullstack" },
   { id: "automation", label: "Automation" },
-  { id: "cross-platform", label: "Cross-Platform" },
 ] as const;

@@ -116,7 +116,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               key={tag}
               className="px-3 py-1 text-[10px] font-mono rounded-lg bg-base-light/50 text-primary/80 border border-glass-border/40"
             >
-              #{tag}
+              {tag}
             </span>
           ))}
         </div>

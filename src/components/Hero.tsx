@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative z-10 min-h-screen flex items-center justify-center px-6"
+      className="relative z-10 pt-44 pb-20 flex items-center justify-center px-6"
       aria-label="Introduction"
     >
       <div className="max-w-[1200px] w-full">
