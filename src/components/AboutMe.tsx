@@ -81,19 +81,35 @@ export default function AboutMe() {
                  </p>
                </div>
               
-              {/* Tech Stack */}
-              <div className="pt-4">
-                <p className="text-xs text-primary/60 uppercase tracking-widest mb-3 font-mono font-bold">
-                  Tech I work with
+            </div>
+
+            {/* Tech Stack — Full-width horizontal bar */}
+            <div className="mt-12 pt-8 border-t border-glass-border/30">
+              <div className="flex flex-col md:flex-row md:items-start gap-10">
+                <p className="text-[10px] text-primary/30 uppercase tracking-[0.3em] font-mono font-bold pt-1 shrink-0">
+                  Tech Stack
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "Tailwind CSS", "PostgreSQL", "Git", "GitHub", "Kotlin"].map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1.5 text-xs font-mono rounded-lg bg-base-light/70 text-primary border border-glass-border hover:border-interactive/50 hover:text-interactive transition-colors duration-150"
-                    >
-                      {tech}
-                    </span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6 flex-grow">
+                  {[
+                    { label: "Languages", tech: ["TypeScript", "JavaScript", "Python", "Kotlin", "SQL"] },
+                    { label: "Frontend", tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion"] },
+                    { label: "Backend & Tools", tech: ["Node.js", "PostgreSQL", "Git", "Docker", "GitHub"] }
+                  ].map((category) => (
+                    <div key={category.label} className="space-y-3">
+                      <p className="text-[10px] text-interactive font-bold uppercase tracking-wider opacity-60">
+                        {category.label}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {category.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[12px] text-primary/90 whitespace-nowrap"
+                          >
+                            <span className="text-interactive/50 mr-1.5">•</span>{t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>

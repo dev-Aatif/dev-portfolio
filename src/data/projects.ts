@@ -66,7 +66,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     category: "web",
     githubUrl: "https://github.com/dev-Aatif/landing-page",
-    liveUrl: "https://dev-aatif/portfolio/projects/landing_page.vercel.app/",
+    liveUrl: "/projects/landing_page",
   },
 ];
 

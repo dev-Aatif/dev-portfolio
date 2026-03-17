@@ -57,14 +57,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-xl font-bold text-primary tracking-tight leading-tight">
             {project.title}
           </h3>
-          {/* External Links - Hover revealed with better interaction state */}
-          <div className="flex gap-2 shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+          {/* Hover Revealed Actions */}
+          <div className="flex gap-2 shrink-0 relative z-30 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-xl glass-bordered transition-all bg-surface/50 hover:bg-surface-hover hover:text-interactive hover:scale-110 active:scale-95"
+                className="p-2.5 rounded-xl border border-glass-border bg-base-light/80 text-primary shadow-xl hover:text-interactive hover:scale-110 active:scale-95 transition-all backdrop-blur-sm"
                 aria-label="View Github"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -76,7 +76,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-xl bg-interactive text-white shadow-lg transition-all hover:bg-interactive-hover hover:scale-110 active:scale-95"
+                className="p-2.5 rounded-xl bg-interactive text-white shadow-xl hover:bg-interactive-hover hover:scale-110 active:scale-95 transition-all"
                 aria-label="View Live/Demo"
                 onClick={(e) => e.stopPropagation()}
               >
