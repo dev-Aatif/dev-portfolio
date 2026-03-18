@@ -25,12 +25,12 @@ export const projects: Project[] = [
       "A Python-based automation tool that monitors job sites (like RemoteOK) using a modular scraper interface, state management to avoid duplicates, and Discord notifications.",
     result:
       "Automated job search orchestration with real-time notifications and zero duplicate alerts.",
-    image: "/projects/automation/assets/hero.png",
+    image: "/assets/auto.png",
     icon: "Cpu",
     tags: ["Python", "Web Scraping", "Discord API", "Docker"],
     category: "automation",
     githubUrl: "https://github.com/dev-Aatif/job-finder",
-    liveUrl: "/projects/automation/assets/hero.png",
+    liveUrl: "/assets/auto.png",
   },
   {
     id: "lead-scraper",
@@ -43,12 +43,12 @@ export const projects: Project[] = [
       "An adaptive lead extraction tool using Playwright and heuristic analysis to identify profile links and perform deep scrapes for contact data.",
     result:
       "High-performance lead extraction with adaptive evasion and comprehensive data exports (CSV/JSON).",
-    image: "/projects/lead_scraper/assets/hero.png",
+    image: "/assets/lead.png",
     icon: "Search",
     tags: ["Python", "Playwright", "Heuristics", "Data Engineering"],
     category: "automation",
     githubUrl: "https://github.com/dev-Aatif/lead-scraper",
-    liveUrl: "/projects/lead_scraper/assets/hero.png",
+    liveUrl: "/assets/lead.png",
   },
   {
     id: "landing-page",
@@ -61,12 +61,12 @@ export const projects: Project[] = [
       "A modern landing page built with Next.js, featuring optimized font loading, Geist typography, and a scalable component architecture.",
     result:
       "A fast, responsive, and developer-friendly landing page template ready for deployment.",
-    image: "/projects/landing_page/assets/hero.png",
+    image: "/assets/landing.png",
     icon: "Layout",
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     category: "web",
     githubUrl: "https://github.com/dev-Aatif/landing-page",
-    liveUrl: "/projects/landing_page/assets/hero.png",
+    liveUrl: "/projects/landing-page",
   },
 ];
 

@@ -1,0 +1,97 @@
+.hero {
+  padding-top: 160px;
+  padding-bottom: 100px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% -20%, hsla(var(--primary), 0.15), transparent 50%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4rem;
+}
+
+.textContent {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge {
+  background: hsla(var(--primary), 0.1);
+  color: hsl(var(--primary));
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid hsla(var(--primary), 0.2);
+}
+
+.title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+}
+
+.highlight {
+  color: hsl(var(--primary));
+  position: relative;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.buttonPrimary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1.125rem;
+  box-shadow: 0 10px 20px -5px hsla(var(--primary), 0.3);
+}
+
+.buttonOutline {
+  background: transparent;
+  color: hsl(var(--foreground));
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.trustText {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .buttonPrimary, .buttonOutline {
+    width: 100%;
+  }
+}

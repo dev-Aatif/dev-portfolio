@@ -1,0 +1,74 @@
+.socialProof {
+  padding: 60px 0;
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsla(var(--background), 0.5);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.trustpilotContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: hsla(160, 100%, 36%, 0.1);
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  border: 1px solid hsla(160, 100%, 36%, 0.2);
+}
+
+.trustpilotText {
+  font-size: 0.9375rem;
+  color: #00b67a;
+}
+
+.trustpilotText strong {
+  font-weight: 800;
+}
+
+.featuredIn {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: hsl(var(--muted-foreground));
+  font-weight: 600;
+}
+
+.logoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  opacity: 0.5;
+  filter: grayscale(1);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.logoGrid:hover {
+  opacity: 0.8;
+  filter: grayscale(0.5);
+}
+
+.logoItem {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+.logoPlaceholder {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .logoGrid {
+    gap: 2.5rem;
+  }
+}
