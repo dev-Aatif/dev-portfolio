@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap');
 
 .landing-page-root {
-  /* Colors - Light Mode */
-  --primary: 250 84% 54%; /* #4F46E5 */
-  --primary-foreground: 0 0% 100%;
+  /* Colors - Restored to Gold (#FFB800) for "God/Premium" look */
+  --primary: 38, 100%, 50%;
+  --primary-foreground: 0, 0%, 0%; /* Black text on gold buttons */
   
-  --background: 0 0% 100%;
-  --foreground: 222 47% 11%;
+  --background: 0, 0%, 100%;
+  --foreground: 222, 47%, 11%;
   
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card: 0, 0%, 100%;
+  --card-foreground: 222, 47%, 11%;
   
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 210, 40%, 96%;
+  --muted-foreground: 215, 16%, 47%;
   
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 250 84% 54%;
+  --border: 214, 32%, 91%;
+  --input: 214, 32%, 91%;
+  --ring: 38, 100%, 50%;
 
   --radius: 0.75rem;
   
@@ -24,53 +24,103 @@
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  max-width: 100vw;
-  overflow-x: hidden;
-  font-family: var(--font-body);
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  scroll-behavior: smooth;
+  /* Isolation */
   min-height: 100vh;
+  width: 100%;
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  font-family: var(--font-body) !important;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  z-index: 10;
 }
 
-.landing-page-root [data-theme='dark'] {
-  --background: 222 47% 4%;
-  --foreground: 210 40% 98%;
-  
-  --card: 222 47% 6%;
-  --card-foreground: 210 40% 98%;
-  
-  --muted: 217 33% 13%;
-  --muted-foreground: 215 20% 65%;
-  
-  --border: 217 33% 18%;
-  --input: 217 33% 18%;
-  
-  --primary: 250 84% 64%;
+/* Scoped Box-Sizing */
+.landing-page-root *,
+.landing-page-root *::before,
+.landing-page-root *::after {
+  box-sizing: border-box;
 }
 
-.landing-page-root h1, .landing-page-root h2, .landing-page-root h3, .landing-page-root h4, .landing-page-root h5, .landing-page-root h6 {
+/* Dark Mode Integration */
+.dark .landing-page-root {
+  --background: 222, 47%, 4%;
+  --foreground: 210, 40%, 98%;
+  
+  --card: 222, 47%, 6%;
+  --card-foreground: 210, 40%, 98%;
+  
+  --muted: 217, 33%, 13%;
+  --muted-foreground: 215, 20%, 65%;
+  
+  --border: 217, 33%, 18%;
+  --input: 217, 33%, 18%;
+  
+  --primary: 38, 100%, 65%;
+  --primary-foreground: 0, 0%, 0%;
+}
+
+/* Container Logic — Must allow module's 'display' to work (No !important on display) */
+.landing-page-root .container {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  width: 100% !important;
+}
+
+/* Typography Resets */
+.landing-page-root h1, 
+.landing-page-root h2, 
+.landing-page-root h3, 
+.landing-page-root h4, 
+.landing-page-root h5, 
+.landing-page-root h6 {
   font-family: var(--font-heading);
   line-height: 1.1;
   letter-spacing: -0.02em;
+  margin-bottom: 0.5em; /* Small default margin to prevent crunching if module is missing it */
 }
 
-/* Glassmorphism Utility */
+.landing-page-root a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.landing-page-root button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.landing-page-root button:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.1);
+}
+
+.landing-page-root button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Glassmorphism Logic */
 .landing-page-root .glass {
-  background: hsla(var(--background), 0.7);
+  background: hsla(var(--background), 0.7) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid hsla(var(--border), 0.5);
 }
 
-/* Container */
-.landing-page-root .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Animations */
+/* Animation Utilities */
 @keyframes fadeInLand {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
