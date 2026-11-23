@@ -1,110 +1,159 @@
+/* Hallmark · shape: Surface Telemetry Monograph · genre: modern-minimal · theme: custom · redesign: full · job: hire · idea: "An engineering dossier structured as a live multi-surface instrument across shell, mobile, desktop, and web." · vibe: "deep observatory carbon, crisp hairlines, phosphor celadon"
+ * paper: oklch(13.5% 0.012 152) · accent: oklch(78% 0.165 152) · display: Rethink Sans · body: IBM Plex Sans · hero: Asymmetric split with left display thesis and right live 4-surface inspector console · nav: Fixed single-row instrument rail with section links and command palette trigger · footer: Mast wordmark with direct channel links and portfolio route · imagery: Profile portrait plus interactive built product console in hero · signature: Live interactive 4-surface engineering console (Shell jot, Android sarmaya, Desktop nebula, Web)
+ * axes: dark/grotesk-sans/chromatic-green · posture: Restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · weakest: R, cut GlowOrb cursor blob, purple-blue gradient mesh, and backdrop-blur glassmorphism in favor of solid OKLCH elevation */
+/* Hallmark · waive 47b · one interactive 4-surface engineering console in hero · the console lets visitors operate dev-Aatif's shell, mobile, desktop, and web builds live */
+
 @import "tailwindcss";
+@import "./tokens.css";
+@import "./base.css" layer(base);
 
 /* ============================================================
-   DESIGN SYSTEM — Glassmorphism Dark Portfolio (Optimized)
+   INSTRUMENT SURFACES & CONTROLS
    ============================================================ */
 
-@theme inline {
-  --color-base: #0F172A;
-  --color-base-light: #1E293B;
-  --color-surface: rgba(255, 255, 255, 0.06);
-  --color-surface-hover: rgba(255, 255, 255, 0.1);
-  --color-primary: #FFFFFF;
-  --color-secondary: rgba(255, 255, 255, 0.5);
-  --color-interactive: #8B5CF6;
-  --color-interactive-hover: #A78BFA;
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-glass-border-hover: rgba(255, 255, 255, 0.2);
-
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+.instrument-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--color-rule) 32%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--color-rule) 32%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 20%, black 35%, transparent 100%);
 }
 
-/* ============================================================
-   BASE
-   ============================================================ */
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 46px;
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-micro) var(--ease-out),
+    border-color var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
 }
 
-body {
-  background-color: var(--color-base);
-  color: var(--color-primary);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  min-height: 100vh;
+.btn-primary:hover {
+  background-color: var(--color-focus);
+  border-color: var(--color-focus);
 }
 
-/* --- Static Background Mesh Gradient (no animation, no pseudo-element jank) --- */
-.bg-mesh {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(56, 189, 248, 0.08), transparent),
-    radial-gradient(ellipse 50% 60% at 60% 80%, rgba(236, 72, 153, 0.06), transparent);
+.btn-primary:active {
+  transform: translateY(1px);
 }
 
-/* ============================================================
-   GLASS UTILITIES
-   ============================================================ */
-
-.glass {
-  background: var(--color-surface);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.glass-bordered {
-  background: var(--color-surface);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-glass-border);
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 46px;
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-paper-2);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-micro) var(--ease-out),
+    border-color var(--dur-micro) var(--ease-out),
+    color var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
 }
 
-/* ============================================================
-   GRADIENT TEXT
-   ============================================================ */
-
-.gradient-text {
-  background: linear-gradient(135deg, #FFFFFF 0%, #8B5CF6 50%, #38BDF8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.btn-quiet:hover {
+  background-color: var(--color-paper-3);
+  border-color: var(--color-muted);
 }
 
-/* ============================================================
-   SCROLLBAR
-   ============================================================ */
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
-
-/* ============================================================
-   FOCUS STATES (Accessibility)
-   ============================================================ */
-
-*:focus-visible {
-  outline: 2px solid var(--color-interactive);
-  outline-offset: 2px;
-  border-radius: 4px;
+.btn-quiet:active {
+  transform: translateY(1px);
 }
 
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+.btn-quiet:disabled,
+.btn-quiet[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Tabular hairlines for figures that compare */
+.stats-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.stats-ledger > * {
+  padding: var(--space-lg);
+  border-left: 1px solid var(--color-rule);
+}
+
+.stats-ledger > :first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+@media (max-width: 48rem) {
+  .stats-ledger {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .stats-ledger > * {
+    padding: var(--space-md) 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .stats-ledger > :first-child {
+    border-top: 0;
+  }
+}
+
+/* Progressive-enhancement reveal: visible by default when scripting is off */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--dur-long) var(--ease-out),
+    transform var(--dur-long) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 50ms);
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
-  html { scroll-behavior: auto; }
+  .btn-primary,
+  .btn-quiet {
+    transition: background-color var(--dur-short) linear, border-color var(--dur-short) linear;
+  }
 }

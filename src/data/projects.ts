@@ -1,69 +1,131 @@
+export type ProjectCategory = "systems" | "apps" | "web" | "automation";
+
 export interface Project {
   id: string;
   title: string;
+  surface: string;
+  stackLead: string;
   description: string;
   problem: string;
   solution: string;
   result: string;
-  image?: string;
-  icon: string; // Lucide icon name
+  icon: "Terminal" | "Smartphone" | "MonitorDown" | "Cpu" | "Search" | "Layout";
   tags: string[];
-  category: "fullstack" | "mobile" | "web" | "desktop" | "automation" | "cross-platform";
+  category: ProjectCategory;
+  featured?: boolean;
   liveUrl?: string;
   githubUrl?: string;
 }
 
 export const projects: Project[] = [
   {
+    id: "jot",
+    title: "Jot",
+    surface: "Shell CLI",
+    stackLead: "Pure Rust, zero dependencies",
+    description:
+      "Local-first command-line note utility written in pure Rust to save, search, and organize technical notes directly from the terminal.",
+    problem:
+      "Cloud note apps pull focus out of the terminal and bury quick engineering logs behind sync delays and Electron memory overhead.",
+    solution:
+      "A single static Rust binary with zero runtime dependencies, plain-file storage, and instant shell search built for daily terminal workflows.",
+    result:
+      "Sub-second capture and lookup directly inside any shell session without leaving the keyboard.",
+    icon: "Terminal",
+    tags: ["Rust", "CLI", "Local-first", "Zero-dependency"],
+    category: "systems",
+    featured: true,
+    githubUrl: "https://github.com/dev-Aatif/jot",
+  },
+  {
+    id: "sarmaya",
+    title: "Sarmaya",
+    surface: "Android App",
+    stackLead: "Kotlin, Jetpack Compose",
+    description:
+      "Offline-first Android portfolio tracker built for the Pakistan Stock Exchange (PSX) with an event-sourced ledger for holdings and realized P/L.",
+    problem:
+      "Retail investors tracking PSX trades on mobile lack reliable offline accounting that preserves exact buy, sell, and dividend history.",
+    solution:
+      "An Android app built with Kotlin and Jetpack Compose around an append-only event-sourced engine that derives positions and P/L locally.",
+    result:
+      "Deterministic portfolio math, full offline availability, and transparent realized gain history on-device.",
+    icon: "Smartphone",
+    tags: ["Kotlin", "Jetpack Compose", "Event Sourcing", "Android"],
+    category: "apps",
+    featured: true,
+    githubUrl: "https://github.com/dev-Aatif/sarmaya",
+  },
+  {
+    id: "nebula-downloader",
+    title: "Nebula Downloader",
+    surface: "Desktop App",
+    stackLead: "Electron, yt-dlp",
+    description:
+      "Cross-platform desktop media downloader pairing a dark-mode Electron interface with the yt-dlp extraction engine.",
+    problem:
+      "Command-line flags for selecting video streams, audio formats, and playlists slow down everyday desktop media downloads.",
+    solution:
+      "A focused Electron wrapper over yt-dlp that surfaces format selection, progress telemetry, and queue management in one desktop window.",
+    result:
+      "Cross-platform video and audio downloads across supported sites with predictable format control.",
+    icon: "MonitorDown",
+    tags: ["Electron", "yt-dlp", "TypeScript", "Desktop"],
+    category: "apps",
+    featured: true,
+    githubUrl: "https://github.com/dev-Aatif/nebula-downloader",
+  },
+  {
     id: "automation",
     title: "Job Posting Monitor",
+    surface: "Automation Worker",
+    stackLead: "Python, Docker",
     description:
-      "A robust Python-based automation tool that monitors job sites, detects new listings, and sends notifications via Discord/Slack webhooks.",
+      "Modular Python scraper and state engine that watches job boards for new listings and dispatches alerts to Discord and Slack webhooks.",
     problem:
-      "Manually checking job sites for new listings is time-consuming and inefficient.",
+      "Checking remote engineering boards by hand wastes hours and misses early application windows.",
     solution:
-      "A Python-based automation tool that monitors job sites (like RemoteOK) using a modular scraper interface, state management to avoid duplicates, and Discord notifications.",
+      "A containerized Python worker with a modular scraper interface, persistent deduplication state, and webhook formatting.",
     result:
-      "Automated job search orchestration with real-time notifications and zero duplicate alerts.",
-    image: "/assets/auto.png",
+      "Automated listing discovery with real-time team alerts and zero duplicate notifications.",
     icon: "Cpu",
     tags: ["Python", "Web Scraping", "Discord API", "Docker"],
     category: "automation",
     githubUrl: "https://github.com/dev-Aatif/job-finder",
-    liveUrl: "/assets/auto.png",
   },
   {
     id: "lead-scraper",
     title: "Professional Lead Scraper",
+    surface: "Extraction Pipeline",
+    stackLead: "Python, Playwright",
     description:
-      "A high-performance, adaptive lead extraction tool built with Python and Playwright.",
+      "Adaptive lead extraction pipeline built with Python and Playwright to parse startup directories and export structured contact records.",
     problem:
-      "Static scrapers are easily blocked and fail to extract deep contact information like emails and founder names from complex startup directories.",
+      "Static HTML fetchers fail on client-rendered directories and miss nested founder and company contact fields.",
     solution:
-      "An adaptive lead extraction tool using Playwright and heuristic analysis to identify profile links and perform deep scrapes for contact data.",
+      "A Playwright browser pipeline with heuristic link discovery and structured schema export to CSV and JSON.",
     result:
-      "High-performance lead extraction with adaptive evasion and comprehensive data exports (CSV/JSON).",
-    image: "/assets/lead.png",
+      "Reliable extraction across dynamic directories with clean tabular exports ready for analysis.",
     icon: "Search",
     tags: ["Python", "Playwright", "Heuristics", "Data Engineering"],
     category: "automation",
     githubUrl: "https://github.com/dev-Aatif/lead-scraper",
-    liveUrl: "/assets/lead.png",
   },
   {
     id: "landing-page",
     title: "Modern Landing Page",
+    surface: "Web Interface",
+    stackLead: "Next.js, React",
     description:
-      "A high-performance, SEO-optimized landing page built with Next.js and Tailwind CSS.",
+      "Responsive product landing page built with Next.js, modular CSS isolation, and interactive pricing and FAQ sections.",
     problem:
-      "Creating high-performance, SEO-optimized landing pages manually can be complex and slow.",
+      "Marketing sites often bundle heavy UI kits that slow first paint and tangle styles across routes.",
     solution:
-      "A modern landing page built with Next.js, featuring optimized font loading, Geist typography, and a scalable component architecture.",
+      "A scoped Next.js route using CSS Modules, optimized font loading, and clean section composition.",
     result:
-      "A fast, responsive, and developer-friendly landing page template ready for deployment.",
-    image: "/assets/landing.png",
+      "Fast initial render and a live interactive route hosted directly inside this portfolio.",
     icon: "Layout",
-    tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    tags: ["Next.js", "React", "CSS Modules", "TypeScript"],
     category: "web",
     githubUrl: "https://github.com/dev-Aatif/landing-page",
     liveUrl: "/projects/landing-page",
@@ -71,7 +133,9 @@ export const projects: Project[] = [
 ];
 
 export const categories = [
-  { id: "all", label: "All" },
-  { id: "web", label: "Web" },
+  { id: "all", label: "All builds" },
+  { id: "systems", label: "Systems & CLI" },
+  { id: "apps", label: "Mobile & Desktop" },
   { id: "automation", label: "Automation" },
+  { id: "web", label: "Web" },
 ] as const;

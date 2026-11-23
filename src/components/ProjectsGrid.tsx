@@ -1,70 +1,85 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { projects, categories } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 
 // ============================================================
-// PROJECTS GRID — Single entrance animation, no per-card Framer
+// PROJECTS GRID — Category Tabs + Zero-Orphan Asymmetric Grid
 // ============================================================
 
 export default function ProjectsGrid() {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState<string>("all");
 
   const filtered =
     activeFilter === "all"
       ? projects
       : projects.filter((p) => p.category === activeFilter);
 
-  return (
-    <section id="projects" className="relative z-10 pt-6 pb-6 px-6" aria-label="Projects">
-      <div className="mx-auto max-w-[1200px]">
-        {/* Section Header — one single fade-in */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="mt-3 text-secondary max-w-lg">
-            A curated selection of work that represents my skills and interests.
-          </p>
-        </motion.div>
+  const hasOddCount = filtered.length % 2 === 1;
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filter projects by category">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveFilter(cat.id)}
-              role="tab"
-              aria-selected={activeFilter === cat.id}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
-                activeFilter === cat.id
-                  ? "bg-interactive text-white"
-                  : "glass-bordered text-secondary hover:text-primary hover:bg-surface-hover"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+  return (
+    <section
+      id="projects"
+      className="relative z-[var(--z-base)] py-20 lg:py-28 border-t border-rule"
+      aria-label="Selected builds"
+    >
+      <div className="container">
+        <div
+          data-reveal=""
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10"
+        >
+          <div>
+            <h2 className="text-[length:var(--text-section)] font-bold tracking-[var(--tracking-display)] leading-[1.05] text-ink max-w-[22ch]">
+              Selected builds across four surfaces
+            </h2>
+            <p className="mt-3 text-base text-ink-2 max-w-[54ch]">
+              Open-source tools and production systems from github.com/dev-Aatif and client builds.
+            </p>
+          </div>
+
+          {/* Filter Tabs */}
+          <div
+            className="flex flex-wrap gap-2"
+            role="tablist"
+            aria-label="Filter builds by category"
+          >
+            {categories.map((cat) => {
+              const selected = activeFilter === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveFilter(cat.id)}
+                  role="tab"
+                  aria-selected={selected}
+                  className={`min-h-[44px] px-4 rounded-full text-sm font-medium border transition-colors whitespace-nowrap ${
+                    selected
+                      ? "bg-paper-3 text-accent border-accent"
+                      : "bg-paper-2 text-ink-2 border-rule hover:text-ink hover:border-muted"
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Grid — Responsive 2-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        {/* Grid — First item spans full width when count is odd to prevent orphan row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[var(--gap-columns)]">
+          {filtered.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              featuredSpan={hasOddCount && index === 0}
+            />
           ))}
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-secondary">
-            <p>No projects found in this category.</p>
+          <div className="py-16 text-center text-ink-2 border border-rule rounded-[var(--radius-card)] bg-paper-2">
+            <p>No builds matched this category.</p>
           </div>
         )}
       </div>

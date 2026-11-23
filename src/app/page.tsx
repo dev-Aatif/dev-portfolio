@@ -1,30 +1,23 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import GlowOrb from "@/components/GlowOrb";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import AboutMe from "@/components/AboutMe";
 import RecruiterAccess from "@/components/RecruiterAccess";
 import ContactButton from "@/components/ContactButton";
 import Footer from "@/components/Footer";
+import RevealObserver from "@/components/RevealObserver";
 
 // ============================================================
-// MAIN PAGE — All sections + static bg mesh div
+// MAIN PAGE — Surface Telemetry Monograph
 // ============================================================
 
 export default function Home() {
   return (
     <>
-      {/* Static mesh gradient background — real div, not pseudo-element */}
-      <div className="bg-mesh" aria-hidden="true" />
-
-      {/* Cursor glow */}
-      <GlowOrb />
-
-      {/* Navigation */}
+      <RevealObserver />
       <Navbar />
 
-      {/* Sections */}
-      <main className="relative z-10">
+      <main className="relative z-[var(--z-base)]">
         <Hero />
         <ProjectsGrid />
         <AboutMe />
@@ -33,10 +26,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Floating CTA */}
       <ContactButton />
-
-      {/* Footer */}
       <Footer />
     </>
   );

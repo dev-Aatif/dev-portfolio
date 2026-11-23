@@ -1,115 +1,143 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Command, Menu, X } from "lucide-react";
+import CommandBar from "./CommandBar";
 
 // ============================================================
-// NAVBAR — Clean sticky nav, glass only on scroll
+// NAVBAR — Single-row instrument rail + Command Palette trigger
 // ============================================================
 
 const navLinks = [
-  { href: "#projects", label: "Projects" },
+  { href: "#projects", label: "Builds" },
   { href: "#about", label: "About" },
   { href: "#resume", label: "Resume" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-glass-border transition-all duration-300"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between h-14">
-        {/* Logo */}
-        <a
-          href="#"
-          className="text-lg font-semibold tracking-tight text-primary hover:text-interactive transition-colors"
-          aria-label="Go to homepage"
+    <>
+      <header className="fixed top-0 left-0 right-0 z-[var(--z-sticky-nav)] bg-paper border-b border-rule">
+        <nav
+          className="container flex items-center justify-between h-16 gap-4"
+          aria-label="Main navigation"
         >
-          dev-Aatif
-        </a>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-secondary hover:text-primary transition-colors relative group"
-              aria-label={`Navigate to ${link.label}`}
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-interactive transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+          {/* Wordmark */}
           <a
-            href="#contact"
-            className="ml-2 px-4 py-2 text-sm font-medium rounded-lg bg-interactive text-white hover:bg-interactive-hover transition-colors"
-            aria-label="Get in touch"
+            href="#hero"
+            className="inline-flex items-center gap-2.5 min-h-[44px] text-base font-bold tracking-tight text-ink hover:text-accent transition-colors whitespace-nowrap"
+            aria-label="dev-Aatif home"
           >
-            Get in Touch
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              className="text-accent shrink-0"
+            >
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="4"
+                stroke="currentColor"
+                strokeWidth="1.75"
+              />
+              <circle cx="12" cy="12" r="3" fill="currentColor" />
+            </svg>
+            <span className="font-[family-name:var(--font-display)]">dev-Aatif</span>
           </a>
-        </div>
 
-        {/* Mobile Burger — Thicker lines and better contrast */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col justify-center gap-1.5 p-2 w-10 h-10 rounded-lg bg-surface/20 hover:bg-surface/40 border border-glass-border transition-colors active:scale-95"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-        >
-          <span className={`block h-0.5 bg-primary transition-all duration-200 origin-center ${mobileOpen ? "rotate-45 translate-y-[4px] w-5" : "w-6"}`} />
-          <span className={`block h-0.5 bg-primary transition-all duration-200 ${mobileOpen ? "opacity-0 w-0" : "w-4 opacity-100"}`} />
-          <span className={`block h-0.5 bg-primary transition-all duration-200 origin-center ${mobileOpen ? "-rotate-45 -translate-y-[4px] w-5" : "w-6"}`} />
-        </button>
-      </div>
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="inline-flex items-center min-h-[44px] px-1 text-sm font-medium text-ink-2 hover:text-ink transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={() => setPaletteOpen(true)}
+              className="btn-quiet"
+              aria-label="Open quick command menu"
+            >
+              <Command size={15} aria-hidden="true" />
+              <span>Command</span>
+              <kbd className="text-xs text-muted font-[family-name:var(--font-outlier)]">
+                ⌘K
+              </kbd>
+            </button>
+          </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+          {/* Mobile Controls */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setPaletteOpen(true)}
+              className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full border border-rule bg-paper-2 text-ink hover:bg-paper-3 transition-colors"
+              aria-label="Open quick command menu"
+            >
+              <Command size={16} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full border border-rule bg-paper-2 text-ink hover:bg-paper-3 transition-colors"
+              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? (
+                <X size={18} aria-hidden="true" />
+              ) : (
+                <Menu size={18} aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Drawer */}
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden bg-base/98 backdrop-blur-xl border-t border-glass-border relative z-[60]"
-          >
-            <div className="p-6 flex flex-col gap-4">
+          <div className="md:hidden border-t border-rule bg-paper-2">
+            <div className="container py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => {
-                    window.location.hash = link.href;
-                    setMobileOpen(false);
-                  }}
-                  className="text-left text-lg text-secondary hover:text-primary transition-colors py-3 border-b border-glass-border/10 last:border-0"
-                  aria-label={`Navigate to ${link.label}`}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="min-h-[44px] flex items-center text-base font-medium text-ink-2 hover:text-ink transition-colors border-b border-rule last:border-b-0"
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
-              <button
-                onClick={() => {
-                  window.location.hash = "#contact";
-                  setMobileOpen(false);
-                }}
-                className="mt-2 text-center px-4 py-4 text-sm font-bold rounded-xl bg-interactive text-white hover:bg-interactive-hover transition-all active:scale-95 shadow-lg shadow-interactive/20"
-                aria-label="Get in touch"
-              >
-                Get in Touch
-              </button>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-    </nav>
+      </header>
+
+      {paletteOpen && (
+        <CommandBar open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+      )}
+    </>
   );
 }
